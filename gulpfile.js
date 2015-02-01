@@ -120,7 +120,7 @@ gulp.task('watch', ['connect'], function () {
   gulp.watch('bower.json', ['wiredep']);
 });
 
-gulp.task('build', ['jshint', 'html', 'images', 'fonts', 'extras'], function () {
+gulp.task('build', ['html', 'images', 'fonts', 'extras'], function () {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
@@ -140,5 +140,6 @@ gulp.task('scripts', ['jsx'], function() {
         .pipe($.browserify({
           debug: true
         }))
-        .pipe(gulp.dest('./app/build/js'))
+        .pipe($.rename('browserify_bundle.js'))
+        .pipe(gulp.dest('./.tmp/scripts'));
 });
