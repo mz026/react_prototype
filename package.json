@@ -10,6 +10,7 @@
     "del": "^0.1.0",
     "gulp": "^3.6.0",
     "gulp-autoprefixer": "^1.0.1",
+    "gulp-browserify": "^0.5.1",
     "gulp-cache": "^0.2.2",
     "gulp-csso": "^0.2.6",
     "gulp-filter": "^1.0.2",
