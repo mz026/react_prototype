@@ -22,7 +22,7 @@ gulp.task('jshint', function () {
     .pipe($.jshint.reporter('fail'));
 });
 
-gulp.task('html', ['styles', 'templates'], function () {
+gulp.task('html', ['styles', 'scripts'], function () {
   var lazypipe = require('lazypipe');
   var cssChannel = lazypipe()
     .pipe($.csso)
@@ -67,7 +67,7 @@ gulp.task('extras', function () {
 
 gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
 
-gulp.task('connect', ['styles', 'templates'], function () {
+gulp.task('connect', ['styles', 'scripts'], function () {
   var serveStatic = require('serve-static');
   var serveIndex = require('serve-index');
   var app = require('connect')()
@@ -116,11 +116,11 @@ gulp.task('watch', ['connect'], function () {
   ]).on('change', $.livereload.changed);
 
   gulp.watch('app/styles/**/*.scss', ['styles']);
-  gulp.watch('app/scripts/**/*.jsx', ['templates']);
+  gulp.watch('app/scripts/**/*.js', ['scripts']);
   gulp.watch('bower.json', ['wiredep']);
 });
 
-gulp.task('build', ['jshint', 'html', 'images', 'fonts', 'extras'], function () {
+gulp.task('build', ['html', 'images', 'fonts', 'extras'], function () {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
@@ -128,8 +128,18 @@ gulp.task('default', ['clean'], function () {
   gulp.start('build');
 });
 
-gulp.task('templates', function () {
-  return gulp.src('app/scripts/**/*.jsx')
+gulp.task('jsx', function () {
+  return gulp.src('app/scripts/**/*.js')
     .pipe($.react())
     .pipe(gulp.dest('.tmp/scripts'));
+});
+
+gulp.task('scripts', ['jsx'], function() {
+    // Single entry point to browserify
+    gulp.src('.tmp/scripts/main.js')
+        .pipe($.browserify({
+          debug: true
+        }))
+        .pipe($.rename('browserify_bundle.js'))
+        .pipe(gulp.dest('./.tmp/scripts'));
 });

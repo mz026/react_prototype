@@ -3,3 +3,5 @@ var Greeting = React.createClass({
     return <h2>Greeting</h2>;
   }
 });
+
+module.exports = Greeting;
