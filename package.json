@@ -13,6 +13,8 @@
     "express": "~4.11.1",
     "jade": "~1.9.1",
     "morgan": "~1.5.1",
+    "node-jsx": "^0.12.4",
+    "react": "^0.12.2",
     "serve-favicon": "~2.2.0"
   },
   "devDependencies": {
@@ -50,4 +52,3 @@
     "wiredep": "^2.0.0"
   }
 }
-
