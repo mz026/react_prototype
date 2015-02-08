@@ -26,8 +26,12 @@
     <![endif]-->
 
 
-    <div id="content"></div>
-    <img src="images/haha.png" alt="" />
+    <div id="content">
+      <% if(typeof content != 'undefined') { %>
+        <%- content %>
+      <%}%>
+    </div>
+
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
