@@ -1,6 +1,7 @@
+var React = require('react');
 var Greeting = React.createClass({
   render: function() {
-    return <h2>Greeting</h2>;
+    return <h2>Greeting { this.props.name }</h2>;
   }
 });
 
