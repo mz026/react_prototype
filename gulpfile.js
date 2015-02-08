@@ -69,15 +69,10 @@ gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
 
 gulp.task('connect', ['styles', 'scripts'], function () {
   var serveStatic = require('serve-static');
-  var serveIndex = require('serve-index');
-  var app = require('connect')()
+  var app = require('./server')
     .use(require('connect-livereload')({port: 35729}))
     .use(serveStatic('.tmp'))
-    .use(serveStatic('front_end'))
-    // paths to bower_components should be relative to the current file
-    // e.g. in front_end/index.html you should use ../bower_components
-    .use('/bower_components', serveStatic('bower_components'))
-    .use(serveIndex('front_end'));
+    .use(serveStatic('front_end'));
 
   require('http').createServer(app)
     .listen(9000)
@@ -129,7 +124,7 @@ gulp.task('default', ['clean'], function () {
 });
 
 gulp.task('jsx', function () {
-  return gulp.src('front_end/scripts/**/*.js')
+  return gulp.src('front_end/scripts/**/*.jsx')
     .pipe($.react())
     .pipe(gulp.dest('.tmp/scripts'));
 });

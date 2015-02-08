@@ -11,7 +11,7 @@ var users = require('./routes/users');
 var app = express();
 
 // to require jsx module
-require('node-jsx').install();
+require('node-jsx').install({ extension: '.jsx' });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -23,6 +23,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+if (app.get('env') == 'development') {
+  app.use('/bower_components', express.static(path.join(__dirname, 'bower_components')));
+  app.use('/images', express.static(path.join(__dirname, 'front_end', 'images')));
+  app.use('/scripts', express.static(path.join(__dirname, '.tmp', 'scripts')));
+  app.use('/styles', express.static(path.join(__dirname, '.tmp', 'styles')));
+}
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);

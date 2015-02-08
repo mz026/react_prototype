@@ -14,7 +14,6 @@ router.get('/', function(req, res, next) {
   var Greeting = require(frontEndPath + '/greeting');
 
   template = fs.readFileSync(__dirname + '/../front_end/index.html', 'utf8');
-  console.log(template);
 
   var content = React.renderToString(Greeting({ name: 'Jude' }));
   res.send(ejs.render(template, { content: content }));
