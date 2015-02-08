@@ -20,7 +20,7 @@ gulp.task('html', ['styles', 'scripts'], function () {
   var cssChannel = lazypipe()
     .pipe($.csso)
     .pipe($.replace, 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap','fonts');
-  var assets = $.useref.assets({searchPath: '{.tmp,front_end}'});
+  var assets = $.useref.assets({searchPath: '{.tmp,front_end,.}'});
 
   return gulp.src('front_end/*.html')
     .pipe(assets)
