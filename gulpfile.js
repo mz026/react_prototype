@@ -98,13 +98,12 @@ gulp.task('watch', ['connect'], function () {
   gulp.watch([
     'front_end/*.html',
     '.tmp/styles/**/*.css',
-    'front_end/scripts/**/*.js',
     '.tmp/scripts/**/*.js',
     'front_end/images/**/*'
   ]).on('change', $.livereload.changed);
 
   gulp.watch('front_end/styles/**/*.scss', ['styles']);
-  gulp.watch('front_end/scripts/**/*.js', ['scripts']);
+  gulp.watch('front_end/scripts/**/*.jsx', ['scripts']);
   gulp.watch('bower.json', ['wiredep']);
 });
 
@@ -129,5 +128,5 @@ gulp.task('scripts', ['jsx'], function() {
           debug: true
         }))
         .pipe($.rename('browserify_bundle.js'))
-        .pipe(gulp.dest('./.tmp/scripts'));
+        .pipe(gulp.dest('.tmp/scripts'));
 });
