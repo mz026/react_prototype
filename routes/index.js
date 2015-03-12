@@ -11,7 +11,7 @@ var ejs = require('ejs');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  var Greeting = require(frontEndPath + '/greeting');
+  var Greeting = require(frontEndPath + '/components/greeting');
 
   template = fs.readFileSync(__dirname + '/../front_end/index.html', 'utf8');
 
