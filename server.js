@@ -5,7 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
+require("node-jsx").install({extension: ".jsx", harmony: true});
+var routes = require('./routes/index.jsx');
 var users = require('./routes/users');
 
 var app = express();
