@@ -104,6 +104,7 @@ gulp.task('watch', ['connect'], function () {
 
   gulp.watch('front_end/styles/**/*.scss', ['styles']);
   gulp.watch('front_end/scripts/**/*.jsx', ['scripts']);
+  gulp.watch('front_end/scripts/**/*.js', ['scripts']);
   gulp.watch('bower.json', ['wiredep']);
 });
 
@@ -116,7 +117,7 @@ gulp.task('default', ['clean'], function () {
 });
 
 gulp.task('jsx', function () {
-  return gulp.src('front_end/scripts/**/*.jsx')
+  return gulp.src(['front_end/scripts/**/*.jsx', 'front_end/scripts/**/*.js'])
     .pipe($.react())
     .pipe(gulp.dest('.tmp/scripts'));
 });
