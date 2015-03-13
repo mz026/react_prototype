@@ -23,18 +23,17 @@ var ExpertActions = require(frontEndPath + '/actions/expert_actions');
 var App = require(frontEndPath + '/components/application');
 var ExpertsStore = require(frontEndPath + '/stores/experts_store');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  // TODO share this with front-end
+
+function createFlux () {
   var flux = new Fluxxor.Flux({
       Experts: new ExpertsStore()
     }, 
     { 
       Expert: ExpertActions 
     });
-
-  template = fs.readFileSync(__dirname + '/../front_end/index.html', 'utf8');
-
+  return flux;
+}
+function getRoutes () {
   var routes = (
     <Route name="app" path="/" handler={App}>
       <Route name="experts" handler={Experts} />
@@ -43,6 +42,15 @@ router.get('/', function(req, res, next) {
       <DefaultRoute handler={Experts} />
     </Route>
   );
+  return routes;
+}
+var template = fs.readFileSync(__dirname + '/../front_end/index.html', 'utf8');
+
+/* GET home page. */
+router.get('/experts', function(req, res, next) {
+  // TODO share this with front-end
+  var flux = createFlux();
+  var routes = getRoutes();
 
   flux.actions.Expert.updateExperts()
     .then(function() {

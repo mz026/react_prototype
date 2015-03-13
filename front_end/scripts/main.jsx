@@ -31,7 +31,7 @@ var routes = (
   </Route>
 );
 
-Router.run(routes, function (Handler) {
+Router.run(routes, Router.HistoryLocation, function (Handler) {
   React.render(<Handler flux={flux}/>, document.getElementById('content'));
 });
 

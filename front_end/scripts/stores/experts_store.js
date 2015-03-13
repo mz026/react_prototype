@@ -10,7 +10,6 @@ var ExpertsStore = Fluxxor.createStore({
 
   _onExpertUpdated: function(payload) {
     this._experts = payload.data;
-    console.log('c', payload);
     this.emit('change');
   },
   getExperts: function() {
