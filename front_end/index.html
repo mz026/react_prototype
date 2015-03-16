@@ -68,9 +68,11 @@
         <!-- endbuild -->
 
 
-        <script type="text/javascript">
-          window.serializedContents = '<%- serializedContents %>';
-        </script>
+        <% if(serializedContents) { %>
+          <script type="text/javascript">
+            window.serializedContents = '<%- serializedContents %>';
+          </script>
+        <% } %>
 
         <!-- build:js scripts/browserify_bundle.js -->
         <script src="/scripts/browserify_bundle.js"></script>

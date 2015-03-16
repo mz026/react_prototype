@@ -66,4 +66,17 @@ router.get('/experts', function(req, res, next) {
     })
 });
 
+router.get('/lessons', function(req, res, next) {
+  var flux = createFlux();
+  var routes = getRoutes();
+
+  Router.run(routes, '/lessons', function (Handler) {
+    var contents = React.renderToString(<Handler flux={flux}/>);
+    res.send(ejs.render(template, { 
+                          content: contents,
+                          serializedContents: null
+                       }));
+  });
+})
+
 module.exports = router;
