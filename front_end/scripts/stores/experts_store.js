@@ -14,6 +14,9 @@ var ExpertsStore = Fluxxor.createStore({
   },
   getExperts: function() {
     return this._experts;
+  },
+  dehydrate: function(data) {
+    this._experts = data;
   }
 });
 

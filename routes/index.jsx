@@ -53,11 +53,15 @@ router.get('/experts', function(req, res, next) {
   var routes = getRoutes();
 
   flux.actions.Expert.updateExperts()
-    .then(function() {
+    .then(function(expertsData) {
       Router.run(routes, function (Handler) {
         var contents = React.renderToString(<Handler flux={flux}/>);
+        var serializedContents = JSON.stringify(expertsData)
         //TODO send state data to client
-        res.send(ejs.render(template, { content: contents }));
+        res.send(ejs.render(template, { 
+                              content: contents, 
+                              serializedContents: serializedContents 
+                           }));
       });
     })
 });

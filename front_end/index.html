@@ -19,6 +19,7 @@
     <!-- build:js scripts/vendor/modernizr.js -->
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
+    
   </head>
   <body>
     <!--[if lt IE 10]>
@@ -65,6 +66,11 @@
         <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js"></script>
         <script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js"></script>
         <!-- endbuild -->
+
+
+        <script type="text/javascript">
+          window.serializedContents = '<%- serializedContents %>';
+        </script>
 
         <!-- build:js scripts/browserify_bundle.js -->
         <script src="/scripts/browserify_bundle.js"></script>

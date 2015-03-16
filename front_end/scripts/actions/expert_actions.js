@@ -8,6 +8,7 @@ module.exports = {
              .then(function(res) {
                self.dispatch(constants.EXPERT_UPDATED, { data: res });
                console.log('updated!');
+               return res;
              });
   }
 }
