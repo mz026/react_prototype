@@ -6,7 +6,7 @@ module.exports = {
     var deferred = Q.defer();
 
     request
-      .get('http://localhost:3001/experts')
+      .get('http://54.178.161.37:3001/experts')
       .end(function(err, res) {
         if ( err ) {
           deferred.reject(err);
