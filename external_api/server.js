@@ -11,6 +11,9 @@ server.get('/experts', function(req, res) {
       age: index + 20
     });
   };
+  res.set({
+    'Access-Control-Allow-Origin': '*'
+  });
   res.json(experts);
 });
 
@@ -27,6 +30,13 @@ server.get('/lessons', function(req, res) {
   };
   res.json(lessons);
 });
+
+server.options('*', function(req, res) {
+  res.set({
+    'Access-Control-Allow-Origin': '*'
+  });
+  res.send('ok');
+})
 
 console.log('server listen to port: 3001');
 server.listen(3001);

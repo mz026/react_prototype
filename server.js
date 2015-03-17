@@ -31,6 +31,9 @@ if (app.get('env') == 'development') {
   app.use('/scripts', express.static(path.join(__dirname, '.tmp', 'scripts')));
   app.use('/styles', express.static(path.join(__dirname, '.tmp', 'styles')));
 }
+if (app.get('env') == 'production') {
+  app.use('/scripts', express.static(path.join(__dirname, 'dist', 'scripts')));
+}
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
