@@ -47,6 +47,7 @@ function getRoutes () {
 var template = fs.readFileSync(__dirname + '/../front_end/index.html', 'utf8');
 // TODO config this according to referer
 var base = 'spa-test';
+var assetsRoot = 'http://54.178.161.37:3000';
 
 /* GET home page. */
 router.get('/experts', function(req, res, next) {
@@ -61,9 +62,7 @@ router.get('/experts', function(req, res, next) {
         var serializedContents = JSON.stringify(expertsData)
         //TODO send state data to client
         res.send(ejs.render(template, { 
-            base: base,
-            // TODO config this according to dev/production
-            assetsRoot: 'http://localhost:3000',
+            assetsRoot: assetsRoot,
             content: contents, 
             serializedContents: serializedContents 
          }));
@@ -78,8 +77,7 @@ router.get('/lessons', function(req, res, next) {
   Router.run(routes, '/lessons', function (Handler) {
     var contents = React.renderToString(<Handler flux={flux}/>);
     res.send(ejs.render(template, { 
-                          base: base,
-                          assetsRoot: 'http://localhost:3000',
+                          assetsRoot: assetsRoot,
                           content: contents,
                           serializedContents: null
                        }));
