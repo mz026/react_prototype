@@ -29,8 +29,8 @@ if (window.serializedContents) {
 
 var routes = (
   <Route name="app" path="/" handler={App}>
-    <Route name="experts" handler={Experts} />
-    <Route name="lessons" handler={Lessons} />
+    <Route name="experts" path="spa-test/experts" handler={Experts} />
+    <Route name="lessons" path="spa-test/lessons" handler={Lessons} />
 
     <DefaultRoute handler={Experts} />
   </Route>

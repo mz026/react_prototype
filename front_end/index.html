@@ -13,13 +13,14 @@
     <!-- endbuild -->
 
     <!-- build:css styles/main.css -->
-    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="<%= assetsRoot + '/styles/main.css' %>">
     <!-- endbuild -->
 
     <!-- build:js scripts/vendor/modernizr.js -->
-    <script src="/bower_components/modernizr/modernizr.js"></script>
+    <!-- <script src="/bower_components/modernizr/modernizr.js"></script> -->
     <!-- endbuild -->
     
+    <base href="<%= base %>" />
   </head>
   <body>
     <!--[if lt IE 10]>
@@ -60,7 +61,7 @@
         <% } %>
 
         <!-- build:js scripts/browserify_bundle.js -->
-        <script src="/scripts/browserify_bundle.js"></script>
+        <script src="<%= assetsRoot + '/scripts/browserify_bundle.js'%>"></script>
         <!-- endbuild -->
 </body>
 </html>
